@@ -163,7 +163,7 @@ class TTTGame {
 
     while (true) {
       let validChoices = this.board.unusedSquares();
-      const prompt = `Choose a square(${this.joinOr(validChoices)}): `;
+      const prompt = `Choose a square(${TTTGame.joinOr(validChoices)}): `;
 
       choice = readline.question(prompt);
 
@@ -176,16 +176,17 @@ class TTTGame {
     this.board.markSquareAt(choice, this.human.getMarker());
   }
 
-  joinOr(choices) {
+  static joinOr(choices, separator = ', ', conjunction = 'or') {
     if (choices.length === 1) {
-      return String(choices[0]);
+      return choices[0].toString();
     } else if (choices.length === 2) {
-      return `${choices[0]} or ${choices[1]}`;
+      return `${choices[0]} ${conjunction} ${choices[1]}`;
     } else {
-      return `${choices.slice(0, choices.length -1)} or `
-              + `${choices[choices.length - 1]}`;
+      let lastChoice = choices[choices.length - 1];
+      let result = choices.slice(0, -1).join(separator);
+      return `${result}${separator} ${conjunction} ${lastChoice}`;
     }
-  };
+  }
 
   computerMoves() {
     let validChoices = this.board.unusedSquares();
