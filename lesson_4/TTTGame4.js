@@ -137,7 +137,7 @@ class TTTGame {
       this.firstPlayer = this.choosePlayer();
       this.playOneGame();
       this.displayMatchWinner();
-      if (this.matchWinner()) break
+      if (this.matchWinner()) break;
       if (!this.playAgain()) break;
       console.log("Let's play again!");
     }
@@ -155,7 +155,7 @@ class TTTGame {
 
       // this.humanMoves();
       // if (this.gameOver()) break;
-    
+
       // this.computerMoves();
       // if (this.gameOver()) break;
       currentPlayer = this.togglePlayer(currentPlayer);
@@ -178,7 +178,7 @@ class TTTGame {
     let firstPlayer;
 
     while (true) {
-      console.log("Who is going first, the computer or the human? Enter (c or h): ")
+      console.log("Who is going first, the computer or the human? Enter (c or h): ");
       firstPlayer = readline.question().toLowerCase();
 
       if (["c", "h"].includes(firstPlayer)) break;
@@ -216,7 +216,7 @@ class TTTGame {
       this.board.matchScore["human"] += 1;
     } else if (this.isWinner(this.computer)) {
       this.board.matchScore["computer"] += 1;
-    } 
+    }
   }
 
   displayMatchScore() {
@@ -299,10 +299,10 @@ class TTTGame {
 
     if (!choice) {
       choice = this.findCriticalSquare(this.human);
-    } 
+    }
 
     if (!choice) {
-      choice = this.board.isUnusedSquare("5") ? "5": null;
+      choice = this.board.isUnusedSquare("5") ? "5" : null;
     }
 
     if (!choice) {
